@@ -2,11 +2,11 @@ import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 const API_URL = "https://api.openai.com/v1/chat/completions";
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
+  const [apiKey, setApiKey] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ const Chat = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
         model: "gpt-3.5-turbo",
@@ -62,6 +62,13 @@ const Chat = () => {
       </div>
 
       <div className="max-w-xl mx-auto ">
+        <input
+          type="password"
+          value={apiKey}
+          onChange={(e) => setApiKey(e.target.value)}
+          className="flex-1 border border-gray-400 rounded-lg px-4 py-4 mr-4"
+          placeholder="Paste your API Key here"
+        />
         <form onSubmit={handleSubmit} className="px-4 py-2 flex items-center ">
           {/* Chat input box */}
           <input
