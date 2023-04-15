@@ -52,7 +52,7 @@ const Chat = () => {
       </nav>
       <div className="flex-1 max-w-xl mx-auto px-4 py-8 flex flex-col">
         {messages.map(({ role, content }, idx) => (
-          <div className="border rounded-md p-4 mb-4 w-full">
+          <div key={idx} className="border rounded-md p-4 mb-4 w-full">
             <div className="text-sm font-bold">
               {role == "user" ? "You" : "Jobot"}
             </div>
